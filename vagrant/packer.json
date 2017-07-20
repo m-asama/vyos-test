@@ -1,0 +1,69 @@
+{
+  "variables": {
+    "iso_url": "{{env `ISO_IMAGE`}}",
+    "iso_checksum": "{{env `ISO_MD5_SUM`}}",
+    "output_directory": "{{env `PACKER_BUILD_DIR`}}"
+  },
+  "builders":
+  [
+    {
+      "name": "virtualbox",
+      "vm_name": "vyos",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Debian_64",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "md5",
+      "output_directory": "{{user `output_directory`}}",
+      "shutdown_command": "sudo halt -p",
+      "disk_size": 4096,
+      "headless": true,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "vyos",
+      "ssh_password": "vyos",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "300s",
+      "boot_wait": "10s",
+      "boot_command":
+      [
+        "<enter><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "vyos<enter><wait10>",
+        "vyos<enter><wait10>",
+        "install image<enter><wait5>",
+        "<enter><wait10>",
+        "<enter><wait5>",
+        "<enter><wait5>",
+        "Yes<enter><wait5>",
+        "<enter><wait10><wait10>",
+        "<enter><wait5>",
+        "<enter><wait5>",
+        "vyos<enter><wait10>",
+        "vyos<enter><wait10>",
+        "<enter><wait10><wait10>",
+        "reboot<enter><wait5>",
+        "Yes<enter><wait10>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+        "vyos<enter><wait10>",
+        "vyos<enter><wait10>",
+        "configure<enter><wait5>",
+        "set interface ethernet eth0 address dhcp<enter><wait5>",
+        "set service ssh<enter><wait5>",
+        "commit<enter><wait5>",
+        "save<enter><wait5>",
+        "exit<enter><wait5>",
+        "exit<enter><wait5>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "only": ["virtualbox"],
+      "scripts": [
+        "vagrant/provisioner_virtualbox.sh"
+      ]
+    }
+  ]
+}

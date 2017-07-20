@@ -1,0 +1,12 @@
+#!/bin/vbash
+
+I=`echo $1 | sed -e s/^vyos//`
+
+source /opt/vyatta/etc/functions/script-template
+
+configure
+
+set interfaces ethernet eth$I address 192.168.0.$I/24
+
+commit
+

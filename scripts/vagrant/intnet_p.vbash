@@ -1,0 +1,16 @@
+#!/bin/vbash
+
+I=`echo $1 | sed -e s/^vyos//`
+
+source /opt/vyatta/etc/functions/script-template
+
+configure
+
+set interfaces ethernet eth1 address 192.168.1.$I/24
+set interfaces ethernet eth2 address 192.168.2.$I/24
+set interfaces ethernet eth3 address 192.168.3.$I/24
+set interfaces ethernet eth4 address 192.168.4.$I/24
+set interfaces ethernet eth5 address 192.168.5.$I/24
+
+commit
+

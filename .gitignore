@@ -1,0 +1,7 @@
+iso/*
+!iso/.gitkeep
+box/*
+!box/.gitkeep
+packer_build.log
+packer_build
+packer_cache

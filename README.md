@@ -23,7 +23,7 @@ VyOS の ISO イメージから Packer を用いて VyOS の VagrantBox を作�
 
 テストスクリプトは以下の通りです。
 
-| テストスクリプト | 最近の状態 | 説明 |
+| テストスクリプト | 最近のテスト結果 | 説明 |
 |:-----------|:-----------:|:-------------|
 | scripts/test/intnet_p.sh | [![Build Status](https://vyos-tester.ginzado.ne.jp/buildStatus/icon?job=TestIntNetP)](https://vyos-tester.ginzado.ne.jp/job/TestIntNetP/) | VagrantBox 間で正常に通信が可能か否かをテスト |
 | scripts/test/intnet_n.sh | [![Build Status](https://vyos-tester.ginzado.ne.jp/buildStatus/icon?job=TestIntNetN)](https://vyos-tester.ginzado.ne.jp/job/TestIntNetN/) | VagrantBox 間で通信できてはならないところが通信できないようになっているかをテスト |
